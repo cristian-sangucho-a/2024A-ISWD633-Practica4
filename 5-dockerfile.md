@@ -53,17 +53,20 @@ docker build -t <nombre imagen>:<version> .
 ### Ejecutar el archivo Dockerfile y construir una imagen en la versión 1.0
 _Puedes copiar y ejecutar directamente. No olvides verificar en qué directorio se encuentra el archivo Dockerfile
 ```
-
+docker build -t cent-os-apachectl:1.0 .
 ```
 
 **¿Cuántos pasos se han ejecutado?**
-# RESPONDER 
+10
 
 ### Inspeccionar la imagen creada
-# COMPLETAR CON UNA CAPTURA
+![image](https://github.com/cristian-sangucho-a/2024A-ISWD633-Practica4/assets/93937686/7f4355e1-6afb-4bf0-bc9e-e24677f23e7b)
+
 
 **Modificar el archivo index.html para incluir su nombre**
 **¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
+9 pasos
+Lo que es diferente en la creación de la imagen esta vez es que Docker ha utilizado la caché para los pasos de yum update -y y yum install httpd -y. Esto significa que Docker no tuvo que ejecutar estos comandos de nuevo porque ya los había ejecutado antes y los resultados estaban en la caché. 
 
 ## Mecanismo de caché
 Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso de construcción y evitar la repetición de pasos que no han cambiado. Cada instrucción en un Dockerfile crea una capa en la imagen final. Docker intenta reutilizar las capas de una construcción anterior si no han cambiado, lo que reduce significativamente el tiempo de construcción.
@@ -79,10 +82,10 @@ Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso
 ```
 
 ### ¿Con que puerto host se está realizando el mapeo?
-# COMPLETAR CON LA RESPUESTA
+docker run -d -P --name apachectl-centos cent-os-apachectl:1.0
 
 **¿Qué es una imagen huérfana?**
-# COMPLETAR CON LA RESPUESTA
+Una imagen huérfana en Docker es una imagen que ya no está asociada con ningún contenedor.
 
 ### Identificar imágenes huérfanas
 ```
